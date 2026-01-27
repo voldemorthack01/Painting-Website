@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google"; // Changed from Inter
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" }); // Changed variable name
 
 export const metadata: Metadata = {
+    metadataBase: new URL('https://sydney-gold-star.onrender.com'), // Added metadataBase for SEO
     title: {
         template: "%s | Sydney Gold Star Group",
-        default: "Painters Sydney | Residential & Commercial | Sydney Gold Star Group",
+        default: "Painters & Decorators Sydney | Residential & Commercial | Sydney Gold Star Group",
     },
-    description: "Professional painters in Sydney & Central Coast. Residential, Commercial, Roof Painting & Deck Staining. Licensed, Insured, and Satisfaction Guaranteed.",
-    keywords: ["Painters Sydney", "Painters Central Coast", "Commercial Painters", "House Painters", "Roof Painting Sydney", "Deck Staining"],
+    description: "Professional painters and decorators in Sydney & Central Coast. Residential, Commercial, Roof Painting & Deck Staining. Licensed, Insured, and Satisfaction Guaranteed.",
+    keywords: ["Painters Sydney", "Painters Central Coast", "Painters Near Me", "Commercial Painters", "House Painters", "Roof Painting Sydney", "Deck Staining", "Painting and Decoration"],
     authors: [{ name: "Sydney Gold Star Group" }],
     openGraph: {
         type: "website",
@@ -30,15 +31,17 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
 
-    // JSON-LD Schema for Local Business
+    // JSON-LD Schema for Local Business (Enhanced)
     const jsonLd = {
         "@context": "https://schema.org",
-        "@type": "ProfessionalService",
+        "@type": "LocalBusiness", // More specific than ProfessionalService
         "name": "Sydney Gold Star Group Pty Ltd",
+        "description": "Premier residential and commercial painters in Sydney. We specialize in house painting, strata painting, roof restoration, and deck staining.",
         "image": "https://sydneygs.com/images/Logos/logo.png",
         "@id": "https://sydneygs.com",
         "url": "https://sydneygs.com",
-        "telephone": "0400000000",
+        "telephone": "0493332306", // Updated phone
+        "priceRange": "$$",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Sydney",
@@ -51,14 +54,21 @@ export default function RootLayout({
             "longitude": 151.2093
         },
         "areaServed": [
-            "Sydney",
-            "Central Coast",
-            "Penrith",
-            "Gosford",
-            "Hornsby",
-            "Parramatta"
+            { "@type": "City", "name": "Sydney" },
+            { "@type": "City", "name": "Central Coast" },
+            { "@type": "City", "name": "Penrith" },
+            { "@type": "City", "name": "Gosford" },
+            { "@type": "City", "name": "Hornsby" },
+            { "@type": "City", "name": "Parramatta" }
         ],
-        "priceRange": "$$"
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "07:00",
+                "closes": "17:00"
+            }
+        ]
     };
 
     return (
@@ -69,7 +79,7 @@ export default function RootLayout({
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
                 />
             </head>
-            <body className={`${inter.variable} font-sans antialiased min-h-screen flex flex-col`}>
+            <body className={`${outfit.variable} font-sans antialiased min-h-screen flex flex-col`}>
                 <Navbar />
                 <main className="flex-grow">
                     {children}

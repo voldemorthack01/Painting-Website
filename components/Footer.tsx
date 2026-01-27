@@ -11,7 +11,7 @@ export default function Footer() {
                     <div className="space-y-4">
                         <h3 className="text-xl font-bold text-white">Sydney <span className="text-gold-500">Gold Star</span></h3>
                         <p className="text-sm leading-relaxed">
-                            Professional painting services for residential and commercial properties across Sydney and Central Coast. Quality you can trust.
+                            Professional painting and decoration services for residential and commercial properties across Sydney and Central Coast. Quality you can trust.
                         </p>
                         <div className="flex space-x-4">
                             <a href="#" className="hover:text-gold-500"><Facebook className="w-5 h-5" /></a>
@@ -48,7 +48,7 @@ export default function Footer() {
                         <ul className="space-y-4 text-sm">
                             <li className="flex items-start gap-3">
                                 <MapPin className="w-5 h-5 text-gold-500 flex-shrink-0" />
-                                <span>Sydney, Central Coast, Penrith, Gosford, Hornsby, Parramatta</span>
+                                <span>Sydney to Central Coast (Including all suburbs & towns)</span>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Phone className="w-5 h-5 text-gold-500 flex-shrink-0" />

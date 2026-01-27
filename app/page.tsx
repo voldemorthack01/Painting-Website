@@ -24,15 +24,15 @@ export default function HomePage() {
                 <div className="flex flex-col md:flex-row min-h-[600px]">
                     {/* Left Content */}
                     <div className="w-full md:w-1/2 flex flex-col justify-center px-8 md:px-16 py-12 md:py-20 z-10">
-                        <div className="mb-6 inline-flex items-center gap-2 text-gold-400 font-bold uppercase tracking-widest text-sm">
+                        <div className="mb-6 inline-flex items-center gap-2 text-gold-400 font-bold uppercase tracking-widest text-sm drop-shadow-md">
                             <Star className="w-4 h-4 fill-gold-400" />
                             <span>Sydney's Premier Painting Team</span>
                         </div>
-                        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
                             Transform <br />
                             <span className="text-gold-400">Your Home.</span>
                         </h1>
-                        <p className="text-xl text-gray-300 mb-8 max-w-lg leading-relaxed">
+                        <p className="text-xl text-gray-100 mb-8 max-w-lg leading-relaxed drop-shadow-md">
                             Expert craftsmanship, premium paint, and a flawless finish guaranteed.
                             We treat your home like our own.
                         </p>
@@ -44,13 +44,13 @@ export default function HomePage() {
                                 </Button>
                             </Link>
                             <Link href="/services">
-                                <Button variant="outline" className="h-14 px-8 text-lg border-2 border-white text-navy hover:text-white hover:bg-white/10 w-full sm:w-auto">
+                                <Button variant="outline" className="h-14 px-8 text-lg border-2 border-white text-white md:text-navy hover:text-white hover:bg-white/10 w-full sm:w-auto bg-navy-900/50 md:bg-transparent">
                                     View Services
                                 </Button>
                             </Link>
                         </div>
 
-                        <div className="mt-12 flex items-center gap-8 text-gray-400 text-sm font-medium">
+                        <div className="mt-12 flex items-center gap-8 text-gray-200 md:text-gray-400 text-sm font-medium drop-shadow-md">
                             <div className="flex items-center gap-2">
                                 <CheckCircle2 className="w-5 h-5 text-gold-400" /> Licensed
                             </div>
@@ -68,23 +68,24 @@ export default function HomePage() {
                         src="/images/Gallery/roller.jpg"
                         alt="Professional Painter using a roller"
                         fill
-                        className="object-cover opacity-90 md:opacity-100"
+                        className="object-cover opacity-100" // Increased opacity
                         priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-navy-900/80 to-transparent md:bg-gradient-to-r md:from-navy-900 md:via-navy-900/80 md:to-transparent"></div>
+                    {/* Gradient: Heavy overlay on mobile, gradient on desktop */}
+                    <div className="absolute inset-0 bg-navy-900/80 md:bg-gradient-to-r md:from-navy-900 md:via-navy-900/80 md:to-transparent"></div>
                 </div>
             </section>
 
             {/* 2. CTA BAR (Wet Paint Warning) */}
-            <div className="wet-paint-strip py-3 px-4 shadow-md sticky top-20 z-40 transform transition-transform">
-                <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 text-center">
-                    <span className="bg-navy-900 text-white font-bold px-3 py-1 rounded text-xs uppercase tracking-wider">
+            <div className="wet-paint-strip py-2 sm:py-3 px-4 shadow-md sticky top-20 z-40 transform transition-transform">
+                <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center">
+                    <span className="bg-navy-900 text-white font-bold px-2 py-0.5 sm:px-3 sm:py-1 rounded text-[10px] sm:text-xs uppercase tracking-wider">
                         Limited Time
                     </span>
-                    <p className="text-navy-900 font-bold text-sm sm:text-base flex items-center gap-2">
-                        Free Colour Consultation with every full exterior repaint.
+                    <p className="text-navy-900 font-bold text-xs sm:text-base flex items-center justify-center gap-1 sm:gap-2 flex-wrap">
+                        <span>Free Colour Consultation with every full exterior repaint.</span>
                         <span className="hidden sm:inline">|</span>
-                        <a href="tel:0493332306" className="underline hover:text-white transition-colors flex items-center gap-1">
+                        <a href="tel:0493332306" className="underline hover:text-white transition-colors flex items-center gap-1 whitespace-nowrap">
                             Call 0493 332 306
                         </a>
                     </p>
@@ -161,6 +162,24 @@ export default function HomePage() {
                         <div className="w-full md:w-1/2">
                             <BeforeAfter />
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 4.5 SEO TEXT SECTION */}
+            <section className="py-20 bg-gray-50 border-t border-gray-100">
+                <div className="max-w-4xl mx-auto px-4 text-center">
+                    <h2 className="text-3xl font-bold text-navy-900 mb-8">Professional Painting & Decoration Services You Can Trust</h2>
+                    <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
+                        <p>
+                            At Sydney Gold Star Group, we understand that finding reliable <strong className="text-navy-900">commercial painting and decoration</strong> experts can be a challenge. That's why we bring over a decade of experience to every project, ensuring minimal disruption to your business while delivering a showroom finish. From the heart of Sydney to the Central Coast, and every suburb in between, our team handles it all.
+                        </p>
+                        <p>
+                            For homeowners, we are the trusted <strong className="text-navy-900">painters near you</strong> that residents rely on for total transformation. From colour consultation to the final coat, we ensure your home is treated with the utmost care. We provide comprehensive services across the entire region, ensuring quality finishes for every local suburb.
+                        </p>
+                        <p>
+                            We are fully <strong className="text-navy-900">licensed strata painters</strong> committed to safety and quality compliance. Our rigorous preparation process—including pressure cleaning, sanding, and gap filling—guarantees a long-lasting result that adds real value to your property. Choose the team that puts quality first.
+                        </p>
                     </div>
                 </div>
             </section>

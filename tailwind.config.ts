@@ -72,7 +72,7 @@ const config: Config = {
       },
       fontFamily: {
         // Ensures the font loads correctly
-        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui"], 
+        sans: ["var(--font-outfit)", "ui-sans-serif", "system-ui"],
       },
     },
   },
