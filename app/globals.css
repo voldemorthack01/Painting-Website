@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* --- 1. BACKGROUNDS (Clean White/Ice) --- */
+    /* This fixes the "yellowish" tint. We use a cool white. */
+    --background: 0 0% 100%;
+    /* Pure White */
+    --foreground: 216 65% 11%;
+    /* Deep Navy Text */
+
+    /* --- 2. CARDS (Pure White) --- */
+    --card: 0 0% 100%;
+    --card-foreground: 216 65% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 65% 11%;
+
+    /* --- 3. PRIMARY BUTTONS (Gold) --- */
+    /* This turns all your "Call to Action" buttons Gold */
+    /* Darkened slightly for better contrast on white backgrounds, consistent with accessible gold */
+    --primary: 46 100% 45%;
+    /* Richer Gold (#e6b800 equivalent or similar HSL) -> trying 46 100% 45% = #e6b800ish */
+    /* Actually #d4af37 is 46 66 52. Let's try darker: #b8951d? No, user wants VISIBLE. */
+    /* Let's go for a standard high-vis gold: #FFD700 is 51 100 50. Let's stick to safe 'Web Gold' but darker */
+    /* --primary: 42 100% 50%; --> Orange-Gold */
+    --primary: 45 93% 47%;
+    /* #e8b923 - Strong Gold */
+    --primary-foreground: 216 65% 11%;
+    /* Navy Text on Gold Button */
+
+    /* --- 4. SECONDARY ELEMENTS (Navy) --- */
+    --secondary: 216 65% 11%;
+    /* Deep Navy */
+    --secondary-foreground: 210 40% 98%;
+    /* White text on Navy */
+
+    /* --- 5. BORDERS & INPUTS (Light Grey) --- */
+    --border: 214 32% 91%;
+    /* Slate-200 */
+    --input: 214 32% 91%;
+    --ring: 46 66% 52%;
+    /* Gold Focus Ring */
+
+    /* --- 6. MUTED / ACCENTS --- */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 216 65% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --radius: 0.5rem;
+  }
+
+  /* Optional: Keep Dark Mode definitions just in case, but default is Light above */
+  .dark {
+    --background: 216 65% 11%;
+    --foreground: 210 40% 98%;
+    --card: 216 50% 15%;
+    --card-foreground: 210 40% 98%;
+    --popover: 216 50% 15%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 46 66% 52%;
+    --primary-foreground: 216 65% 11%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 46 66% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Forces all headings to be your Brand Navy color automatically */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-white font-bold;
+  }
+}
+
+.wet-paint-strip {
+  background: repeating-linear-gradient(45deg,
+      #d4af37,
+      #d4af37 10px,
+      #b4941f 10px,
+      #b4941f 20px);
+}
