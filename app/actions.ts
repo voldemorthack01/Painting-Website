@@ -5,20 +5,32 @@ import db from '@/lib/db'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
-export async function submitMessageAction(prevState: any, formData: FormData) {
-    const name = formData.get('name') as string
-    const phone = formData.get('phone') as string
-    const suburb = formData.get('suburb') as string
-    const service = formData.get('service') as string
-    const message = formData.get('message') as string
+export async function submitContactForm(prevState: any, formData: FormData) {
+    const name = (formData.get('name') as string || '').trim()
+    const email = (formData.get('email') as string || '').trim()
+    const phone = (formData.get('phone') as string || '').trim()
+    const suburb = (formData.get('suburb') as string || '').trim()
+    const service = (formData.get('service') as string || '').trim()
+    const message = (formData.get('message') as string || '').trim()
 
-    if (!name || !phone || !message) {
-        return { success: false, message: 'Please fill in all required fields.' }
+    // Input Limits Validation
+    if (name.length > 100) return { success: false, message: 'Name is too long (max 100 chars).' }
+    if (email.length > 100) return { success: false, message: 'Email is too long (max 100 chars).' }
+    if (phone.length > 20) return { success: false, message: 'Phone number is too long (max 20 chars).' }
+    if (message.length > 1000) return { success: false, message: 'Message is too long (max 1000 chars).' }
+
+    // Strict Validation: Email OR Phone required
+    if (!email && !phone) {
+        return { success: false, message: 'Please provide an email or phone number so we can contact you.' }
+    }
+
+    if (!message) {
+        return { success: false, message: 'Please enter a message.' }
     }
 
     try {
-        const stmt = db.prepare('INSERT INTO messages (name, phone, suburb, service, message, date) VALUES (?, ?, ?, ?, ?, ?)')
-        stmt.run(name, phone, suburb, service, message, new Date().toISOString())
+        const stmt = db.prepare('INSERT INTO messages (name, email, phone, suburb, service, message, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)')
+        stmt.run(name, email, phone, suburb, service, message, new Date().toISOString())
 
         revalidatePath('/admin/dashboard')
         return { success: true, message: 'Message sent successfully!' }

@@ -1,7 +1,7 @@
 'use client'
 
 import { useFormState } from 'react-dom'
-import { submitMessageAction } from '@/app/actions'
+import { submitContactForm } from '@/app/actions'
 import { Button } from '@/components/ui/button'
 import { useEffect, useRef } from 'react'
 
@@ -11,7 +11,7 @@ const initialState = {
 }
 
 export default function ContactForm() {
-    const [state, formAction] = useFormState(submitMessageAction, initialState)
+    const [state, formAction] = useFormState(submitContactForm, initialState)
     const formRef = useRef<HTMLFormElement>(null)
 
     useEffect(() => {
@@ -22,15 +22,27 @@ export default function ContactForm() {
 
     return (
         <form ref={formRef} action={formAction} className="space-y-6">
+            <div className="space-y-2">
+                <label htmlFor="name" className="text-sm font-medium text-gray-700">Full Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="John Doe"
+                    maxLength={100}
+                    className="flex h-10 w-full text-black rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                />
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium text-gray-700">Full Name</label>
+                    <label htmlFor="email" className="text-sm font-medium text-gray-700">Email (Required for Contact)</label>
                     <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
-                        placeholder="John Doe"
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="john@example.com"
+                        maxLength={100}
                         className="flex h-10 w-full text-black rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     />
                 </div>
@@ -40,8 +52,8 @@ export default function ContactForm() {
                         type="tel"
                         id="phone"
                         name="phone"
-                        required
                         placeholder="0400 000 000"
+                        maxLength={20}
                         className="flex h-10 w-full text-black rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     />
                 </div>
@@ -80,10 +92,13 @@ export default function ContactForm() {
                     id="message"
                     name="message"
                     required
+                    maxLength={1000}
                     className="flex min-h-[120px] w-full text-black rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="Tell us about your project..."
                 ></textarea>
             </div>
+
+            <p className="text-xs text-gray-500 italic">* Please provide either an email or phone number.</p>
 
             {state.message && (
                 <div className={`p-3 rounded-lg text-center font-medium ${state.success ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'}`}>

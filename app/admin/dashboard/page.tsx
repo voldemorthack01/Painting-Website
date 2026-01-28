@@ -4,6 +4,7 @@ import db from '@/lib/db';
 import { logoutAction } from '@/app/actions';
 import { Button } from '@/components/ui/button';
 import { LogOut, Inbox } from 'lucide-react';
+import AdminMessageRow from '@/components/AdminMessageRow';
 
 export default function AdminDashboardPage() {
     const cookieStore = cookies();
@@ -45,10 +46,10 @@ export default function AdminDashboardPage() {
                         <table className="w-full text-left border-collapse">
                             <thead>
                                 <tr className="bg-gray-50 border-b border-gray-200">
-                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Date</th>
-                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Name</th>
-                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Contact</th>
-                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Service</th>
+                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider w-32">Date</th>
+                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider w-48">Name</th>
+                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider w-56">Contact</th>
+                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider w-40">Service</th>
                                     <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Message</th>
                                 </tr>
                             </thead>
@@ -61,28 +62,7 @@ export default function AdminDashboardPage() {
                                     </tr>
                                 ) : (
                                     messages.map((msg) => (
-                                        <tr key={msg.id} className="hover:bg-gray-50 transition-colors">
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                {new Date(msg.date).toLocaleDateString()} <br />
-                                                <span className="text-xs text-gray-400">{new Date(msg.date).toLocaleTimeString()}</span>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-navy-900">
-                                                {msg.name}
-                                                <div className="text-xs font-normal text-gray-500">{msg.suburb || 'No suburb'}</div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                                <div className="font-medium">{msg.phone}</div>
-                                                {/* Email wasnt in DB schema requirement but good to have if extending */}
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-navy-900">
-                                                <span className="bg-gold-50 text-gold-700 px-2 py-1 rounded text-xs font-medium">
-                                                    {msg.service || 'General'}
-                                                </span>
-                                            </td>
-                                            <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate">
-                                                {msg.message}
-                                            </td>
-                                        </tr>
+                                        <AdminMessageRow key={msg.id} msg={msg} />
                                     ))
                                 )}
                             </tbody>

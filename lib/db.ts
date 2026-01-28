@@ -13,15 +13,19 @@ if (!fs.existsSync(dbDir)) {
 const db = new Database(dbPath);
 
 // Initialize database with table
+// DROPPING table to ensure schema update since this is development and per plan
+db.exec(`DROP TABLE IF EXISTS messages`);
+
 db.exec(`
     CREATE TABLE IF NOT EXISTS messages (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        phone TEXT NOT NULL,
+        name TEXT,
+        email TEXT,
+        phone TEXT,
         suburb TEXT,
         service TEXT,
-        message TEXT NOT NULL,
-        date TEXT NOT NULL
+        message TEXT,
+        created_at TEXT NOT NULL
     )
 `);
 
