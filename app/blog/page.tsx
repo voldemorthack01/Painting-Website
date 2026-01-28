@@ -57,7 +57,7 @@ export default function BlogPage() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {posts.map((post) => (
-                        <article key={post.id} className="flex flex-col border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white h-full">
+                        <article key={post.id} className="relative flex flex-col border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white h-full group">
                             <div className="p-8 flex flex-col h-full">
                                 <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
                                     <span className="flex items-center gap-1"><Calendar className="w-4 h-4" /> {post.date}</span>
@@ -65,16 +65,16 @@ export default function BlogPage() {
                                 </div>
 
                                 <h2 className="text-2xl font-bold text-navy-900 mb-3 hover:text-gold-600 transition-colors">
-                                    <Link href={post.slug}>{post.title}</Link>
+                                    <Link href={post.slug} className="before:absolute before:inset-0 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 rounded-xl">{post.title}</Link>
                                 </h2>
 
                                 <p className="text-gray-600 leading-relaxed mb-6 flex-grow">
                                     {post.excerpt}
                                 </p>
 
-                                <Link href={post.slug} className="inline-flex items-center text-gold-600 font-semibold hover:text-gold-700 mt-auto">
+                                <div className="inline-flex items-center text-gold-600 font-semibold group-hover:text-gold-700 mt-auto">
                                     Read Article <ArrowRight className="ml-2 w-4 h-4" />
-                                </Link>
+                                </div>
                             </div>
                         </article>
                     ))}

@@ -15,25 +15,29 @@ export default function ServicesPage() {
             title: "Residential Painting",
             subtitle: "Interior House Painting & Exterior Protection",
             desc: "Transform your home with a fresh look. We handle everything from single walls to full exterior render painting.",
-            image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1200&auto=format&fit=crop"
+            image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1200&auto=format&fit=crop",
+            link: "/services/residential-painting"
         },
         {
             title: "Commercial Painting",
             subtitle: "Commercial Strata Painting & Office Maintenance",
             desc: "Scalable solutions for businesses. We work after-hours to minimize disruption to your operations.",
-            image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop"
+            image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop",
+            link: "/services/commercial-painting"
         },
         {
             title: "Roof Painting",
             subtitle: "Roof & Deck Restoration",
             desc: "Protect your roof from the elements with heat-reflective coatings and comprehensive cleaning.",
-            image: "/images/Gallery/project5.jpg" // Used General Painting placeholder as relevant roof specific not provided, using general for structure
+            image: "/images/Gallery/project5.jpg",
+            link: "/services/roof-painting"
         },
         {
             title: "General Maintenance",
             subtitle: "Deck Staining & Pressure Cleaning",
             desc: "Keep your property looking its best with our scheduled maintenance and cleaning services.",
-            image: "/images/Gallery/project2.jpg" // Fallback to local gallery image
+            image: "/images/Gallery/project2.jpg",
+            link: "/services/deck-staining"
         }
     ]
 
@@ -68,8 +72,8 @@ export default function ServicesPage() {
                                 <p className="text-gray-600 leading-relaxed mb-6 flex-1">
                                     {service.desc}
                                 </p>
-                                <Link href="/contact" className="inline-flex items-center font-semibold text-navy-900 hover:text-gold-600">
-                                    Get a Quote <ArrowRight className="ml-2 w-4 h-4" />
+                                <Link href={service.link} className="inline-flex items-center font-semibold text-navy-900 hover:text-gold-600">
+                                    Learn More <ArrowRight className="ml-2 w-4 h-4" />
                                 </Link>
                             </div>
                         </div>
